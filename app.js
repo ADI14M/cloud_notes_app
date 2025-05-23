@@ -5,9 +5,11 @@ const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 async function login() {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
-  const { error } = await supabase.auth.signInWithPassword({ email, password });
-  if (error) alert(error.message);
-}
+
+  if (!email || !password) {
+    alert("Please enter both email and password.");
+    return;
+  }
 
 async function signup() {
   const email = document.getElementById("email").value;
